@@ -9,6 +9,7 @@ import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {EmployeeComponent} from './employee/employee.component';
 import {AlertComponent} from './alert/alert.component';
+import {InformationComponent} from './information/information.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {AlertComponent} from './alert/alert.component';
     LoginComponent,
     RegisterComponent,
     EmployeeComponent,
-    AlertComponent
+    AlertComponent,
+    InformationComponent
   ],
   imports: [
     BrowserModule,
