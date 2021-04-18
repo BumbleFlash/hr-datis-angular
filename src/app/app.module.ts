@@ -3,12 +3,13 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {appRoutingModule} from './app.routing';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {EmployeeComponent} from './employee/employee.component';
 import {AlertComponent} from './alert/alert.component';
+import {InformationComponent} from './information/information.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {AlertComponent} from './alert/alert.component';
     LoginComponent,
     RegisterComponent,
     EmployeeComponent,
-    AlertComponent
+    AlertComponent,
+    InformationComponent
   ],
   imports: [
     BrowserModule,

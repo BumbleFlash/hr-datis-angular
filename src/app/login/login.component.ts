@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
   }
@@ -54,7 +54,6 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/']);
         },
         error => {
-          console.log(error);
           this.alertService.error(error.error.message);
           this.loading = false;
         }

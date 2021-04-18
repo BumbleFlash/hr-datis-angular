@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {EmployeeService} from '../services/employee.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-employee',
@@ -6,11 +8,26 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./employee.component.css']
 })
 export class EmployeeComponent implements OnInit {
-
-  constructor() {
+  employees;
+  loading = true;
+  constructor(private employeeService: EmployeeService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
+    this.employeeService.getAllEmployees().subscribe(
+      res => {
+        this.employees = res.employees;
+        this.loading = false;
+      },
+      error => {
+      }
+    );
+  }
+
+  update(employee): void {
+    this.employeeService.updateEmployeeSubject(employee);
+    this.router.navigate(['/update']);
   }
 
 }
