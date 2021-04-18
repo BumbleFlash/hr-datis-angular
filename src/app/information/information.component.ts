@@ -15,12 +15,24 @@ export class InformationComponent implements OnInit {
   submitted = false;
   loading = false;
   updateEmployee: FormGroup;
+  title;
+  button;
+  employee;
+  private URL_ADD = '/add';
 
   constructor(private formBuilder: FormBuilder,
               private employeeService: EmployeeService,
               private alertService: AlertService,
               private router: Router,
               private authService: AuthService) {
+    if (this.router.url === this.URL_ADD) {
+      this.title = 'Add Employee';
+      this.button = 'Add';
+    } else {
+      this.title = 'Update Employee';
+      this.button = 'Update';
+
+    }
   }
 
   ngOnInit(): void {
@@ -32,6 +44,20 @@ export class InformationComponent implements OnInit {
       insurance: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
       four_o_oneK: ['', [Validators.required, Validators.pattern('^[0-9]*$')]]
     });
+
+    if (this.router.url !== this.URL_ADD) {
+      this.employeeService.employeeObservable.subscribe(e => this.employee = e);
+      if (!this.employee) {
+        this.router.navigate(['/']);
+        return;
+      }
+      this.f.eName.setValue(this.employee.name);
+      this.f.email.setValue(this.employee.email);
+      this.f.base_salary.setValue(this.employee.base_salary);
+      this.f.bonus.setValue(this.employee.bonus);
+      this.f.insurance.setValue(this.employee.insurance);
+      this.f.four_o_oneK.setValue(this.employee.four_o_oneK);
+    }
   }
 
   get f(): { [p: string]: AbstractControl } {
@@ -58,22 +84,40 @@ export class InformationComponent implements OnInit {
     };
 
     this.loading = true;
-    this.employeeService.addEmployee(employee)
-      .pipe(first())
-      .subscribe(
-        res => {
-          this.alertService.success(res.message, true);
-          this.router.navigate(['/']);
-        },
-        error => {
-          this.loading = false;
-          if (error.error.message) {
-            this.alertService.error(error.error.message);
-          } else {
-            this.alertService.error('Sorry error occurred');
+    if (this.router.url === this.URL_ADD) {
+      this.employeeService.addEmployee(employee)
+        .pipe(first())
+        .subscribe(
+          res => {
+            this.alertService.success(res.message, true);
+            this.router.navigate(['/']);
+          },
+          error => {
+            this.loading = false;
+            if (error.error.message) {
+              this.alertService.error(error.error.message);
+            } else {
+              this.alertService.error('Sorry error occurred');
+            }
           }
-        }
-      );
+        );
+    } else {
+      this.employeeService.updateEmployee(employee, this.employee._id)
+        .pipe(first())
+        .subscribe(
+          res => {
+            this.alertService.success(res.message, true);
+            this.router.navigate(['/']);
+          },
+          error => {
+            if (error.error.message) {
+              this.alertService.error(error.error.message);
+            } else {
+              this.alertService.error('Sorry error occurred');
+            }
+          }
+        );
+    }
   }
 
 

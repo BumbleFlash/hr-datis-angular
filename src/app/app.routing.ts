@@ -11,6 +11,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'add', component: InformationComponent},
+  {path: 'update', component: InformationComponent},
 
   // otherwise redirect to home
   {path: '**', redirectTo: ''}
