@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
 })
 export class EmployeeComponent implements OnInit {
   employees;
-
+  loading = true;
   constructor(private employeeService: EmployeeService,
               private router: Router) {
   }
@@ -18,6 +18,7 @@ export class EmployeeComponent implements OnInit {
     this.employeeService.getAllEmployees().subscribe(
       res => {
         this.employees = res.employees;
+        this.loading = false;
       },
       error => {
       }
