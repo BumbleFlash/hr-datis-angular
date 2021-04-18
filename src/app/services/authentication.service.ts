@@ -23,7 +23,6 @@ export class AuthService {
     const body = {email, password};
     return this.http.post<any>(this.url + 'login', body)
       .pipe(map(res => {
-        console.log(res);
         if (res.accessToken) {
           localStorage.setItem('token', res.accessToken);
           localStorage.setItem('currentUser', JSON.stringify(res));
@@ -41,7 +40,6 @@ export class AuthService {
     });
     return this.http.post<any>(this.url + 'registerUser', JSON.stringify(body), {headers: config})
       .pipe(map(res => {
-        console.log(res);
         return res;
       }));
   }

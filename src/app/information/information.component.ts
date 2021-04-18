@@ -37,7 +37,7 @@ export class InformationComponent implements OnInit {
 
   ngOnInit(): void {
     this.updateEmployee = this.formBuilder.group({
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       eName: ['', Validators.required],
       base_salary: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
       bonus: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
