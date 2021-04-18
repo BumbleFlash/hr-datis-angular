@@ -1,5 +1,8 @@
 <h2>Employees</h2>
 <br>
+<div *ngIf="employees?.length == 0">
+  <h4>No employees found</h4>
+</div>
 <div *ngFor="let employee of employees" class="card" style="width: 30rem">
   <div class="card-body">
     <h5 class="card-title">{{employee.name}}</h5>
