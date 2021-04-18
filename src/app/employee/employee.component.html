@@ -1,1 +1,11 @@
-<p>employee works!</p>
+<div *ngFor="let employee of employees" class="card" style="width: 30rem">
+  <div class="card-body">
+    <h5 class="card-title">{{employee.name}}</h5>
+    <p class="card-text">Base Salary: {{employee.base_salary}}</p>
+    <p class="card-text">Bonus: {{employee.bonus}}</p>
+    <p class="card-text">Insurance: {{employee.insurance}}</p>
+    <p class="card-text">401(k): {{employee.four_o_oneK}}</p>
+    <p class="card-text">Total Salary: {{employee.total_salary}}</p>
+    <a href="#" class="btn btn-primary">Update</a>
+  </div>
+</div>
