@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '../services/authentication.service';
 import {first} from 'rxjs/operators';
@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  get f() {
+  get f(): { [p: string]: AbstractControl } {
     return this.registerForm.controls;
   }
 
