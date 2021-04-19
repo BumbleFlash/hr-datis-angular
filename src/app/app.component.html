@@ -1,12 +1,14 @@
 <!-- nav -->
 <style>
   .navbar-custom {
+    z-index: 9999999;
     background-color: #db6b00;
   }
 
   /* change the brand and text color */
   .navbar-custom .navbar-brand,
   .navbar-custom .navbar-text {
+    z-index: 9999999;
     color: #ffffff;
   }
 
@@ -22,6 +24,7 @@
   }
 /*Navigation bar that displays home, logout and Add employee buttons */
 </style>
+
 <nav class="navbar navbar-expand navbar-custom" *ngIf="currentUser">
   <div class="navbar-nav">
     <a class="nav-item nav-link" routerLink="/">Home</a>
