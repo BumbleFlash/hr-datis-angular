@@ -133,6 +133,7 @@ export class InformationComponent implements OnInit {
             this.router.navigate(['/']);
           },
           error => {
+            this.loading = false;
             if (error.error.message) {
               this.alertService.error(error.error.message);
             } else {
