@@ -3,6 +3,10 @@ import {Subscription} from 'rxjs';
 
 import {AlertService} from '../services/alert.service';
 
+/**
+ * The AlertComponent populates the division with the respective type and message by subscribing to the
+ * AlertService's observable.
+ */
 @Component({selector: 'app-alert', templateUrl: 'alert.component.html'})
 export class AlertComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
@@ -12,6 +16,9 @@ export class AlertComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    /**
+     * Gets alert from the observable and displays message with provided type.
+     */
     this.subscription = this.alertService.getAlert()
       .subscribe(message => {
         switch (message && message.type) {
@@ -27,6 +34,9 @@ export class AlertComponent implements OnInit, OnDestroy {
       });
   }
 
+  /**
+   * Unsubscribe from the service to avoid leaks.
+   */
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }

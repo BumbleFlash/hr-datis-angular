@@ -20,7 +20,7 @@
   .navbar-custom .nav-item:hover .nav-link {
     color: #ffffff;
   }
-
+/*Navigation bar that displays home, logout and Add employee buttons */
 </style>
 <nav class="navbar navbar-expand navbar-custom" *ngIf="currentUser">
   <div class="navbar-nav">
@@ -30,12 +30,14 @@
   </div>
 </nav>
 
-<!-- main app container -->
+<!-- Main container for the app -->
 <div class="jumbotron" style="background-color: white">
   <div class="container">
     <div class="row">
       <div class="col-sm-6 offset-sm-3">
+        <!--        Shows the alert message. -->
         <app-alert></app-alert>
+        <!--        Displays components depending on the routes. -->
         <router-outlet></router-outlet>
       </div>
     </div>
