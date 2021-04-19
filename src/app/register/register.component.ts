@@ -5,6 +5,9 @@ import {AuthService} from '../services/authentication.service';
 import {first} from 'rxjs/operators';
 import {AlertService} from '../services/alert.service';
 
+/**
+ * Component responsible for maintaining the registration form.
+ */
 @Component({
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
@@ -14,8 +17,14 @@ export class RegisterComponent implements OnInit {
   loading = false;
   submitted = false;
 
+  /**
+   * Navigates to the main page if the user is already logged in.
+   * @param formBuilder - FormBuilder object
+   * @param router - Router instance.
+   * @param authService - Authentication service to register user.
+   * @param alertService - Alert Service to display messages.
+   */
   constructor(private formBuilder: FormBuilder,
-              private route: ActivatedRoute,
               private router: Router,
               private authService: AuthService,
               private alertService: AlertService) {
@@ -25,6 +34,9 @@ export class RegisterComponent implements OnInit {
     }
   }
 
+  /**
+   * Initializes the form with validators.
+   */
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -33,14 +45,20 @@ export class RegisterComponent implements OnInit {
     });
   }
 
+  /**
+   * To shorten the form controls.
+   */
   get f(): { [p: string]: AbstractControl } {
     return this.registerForm.controls;
   }
 
+  /**
+   * Called on Button click. Calls the register function in the Authentication Service.
+   */
   onSubmit(): void {
     this.submitted = true;
 
-    // stop here if form is invalid
+    // check if the form is invalid.
     if (this.registerForm.invalid) {
       return;
     }

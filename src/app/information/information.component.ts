@@ -6,6 +6,10 @@ import {AlertService} from '../services/alert.service';
 import {Router} from '@angular/router';
 import {AuthService} from '../services/authentication.service';
 
+/**
+ * Information Component is used to add or update employees. Reuses the design and behaves as per the
+ * router path.
+ */
 @Component({
   selector: 'app-information',
   templateUrl: './information.component.html',
@@ -20,6 +24,15 @@ export class InformationComponent implements OnInit {
   employee;
   private URL_ADD = '/add';
 
+  /**
+   * Sets button and heading texts as per the router path. For ex: the button is set to Add if
+   * the path '/add'.
+   * @param formBuilder - FormBuilder object.
+   * @param employeeService - Employee Service to add or update an employee.
+   * @param alertService - Alert Service to display messages.
+   * @param router - Router Object.
+   * @param authService - Authentication service to include user information.
+   */
   constructor(private formBuilder: FormBuilder,
               private employeeService: EmployeeService,
               private alertService: AlertService,
@@ -31,10 +44,13 @@ export class InformationComponent implements OnInit {
     } else {
       this.title = 'Update Employee';
       this.button = 'Update';
-
     }
   }
 
+  /**
+   * Initializes the form with validators. Populates the form with employee information
+   * if user chooses to update.
+   */
   ngOnInit(): void {
     this.updateEmployee = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -60,10 +76,17 @@ export class InformationComponent implements OnInit {
     }
   }
 
+  /**
+   * To shorten the form controls.
+   */
   get f(): { [p: string]: AbstractControl } {
     return this.updateEmployee.controls;
   }
 
+  /**
+   * Called on Button click. Calls the Add API if the router path was '/add' and the update API if the router path
+   * was '/update'
+   */
   onSubmit(): void {
     this.submitted = true;
 

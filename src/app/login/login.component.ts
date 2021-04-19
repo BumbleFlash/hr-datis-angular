@@ -5,6 +5,9 @@ import {AuthService} from '../services/authentication.service';
 import {first} from 'rxjs/operators';
 import {AlertService} from '../services/alert.service';
 
+/**
+ * Component responsible for maintaining the login form.
+ */
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -14,20 +17,26 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loading = false;
   submitted = false;
-  returnUrl: string;
 
+  /**
+   * Navigates to the main page if the user is already logged in.
+   * @param formBuilder - FormBuilder object
+   * @param router - Router instance.
+   * @param authService - Authentication service to login user.
+   * @param alertService - Alert Service to display messages.
+   */
   constructor(private formBuilder: FormBuilder,
-              private route: ActivatedRoute,
               private router: Router,
               private authService: AuthService,
               private alertService: AlertService) {
     if (this.authService.currentUserValue) {
       this.router.navigate(['/']);
     }
-
-    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
   }
 
+  /**
+   * Initializes the form with validators.
+   */
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -35,10 +44,16 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  /**
+   * To shorten the form controls.
+   */
   get f(): { [p: string]: AbstractControl } {
     return this.loginForm.controls;
   }
 
+  /**
+   * Called on Button click. Calls the login function in the Authentication Service.
+   */
   onSubmit(): void {
     this.submitted = true;
 
