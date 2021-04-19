@@ -23,7 +23,7 @@
     <input type="number" formControlName="base_salary" class="form-control"
            [ngClass]="{ 'is-invalid': submitted && f.base_salary.errors }"/>
     <div *ngIf="submitted && f.base_salary.errors" class="invalid-feedback">
-      <div *ngIf="f.base_salary.errors.required">Base Salary is required</div>
+      <div *ngIf="f.base_salary.errors.required">Base Salary is required or entered value is invalid</div>
       <div *ngIf="f.base_salary.errors.pattern">Please enter a valid number</div>
     </div>
     <div class="form-group">
@@ -31,7 +31,9 @@
       <input type="number" formControlName="bonus" class="form-control"
              [ngClass]="{ 'is-invalid': submitted && f.bonus.errors }"/>
       <div *ngIf="submitted && f.bonus.errors" class="invalid-feedback">
-        <div *ngIf="f.bonus.errors.required">Bonus is required. Enter 0 if no bonus is provided</div>
+        <div *ngIf="f.bonus.errors.required">Bonus is required or entered value is invalid. Enter 0 if no bonus is
+          provided
+        </div>
         <div *ngIf="f.bonus.errors.pattern">Please enter a valid number</div>
       </div>
     </div>
@@ -40,7 +42,9 @@
       <input type="number" formControlName="insurance" class="form-control"
              [ngClass]="{ 'is-invalid': submitted && f.insurance.errors }"/>
       <div *ngIf="submitted && f.insurance.errors" class="invalid-feedback">
-        <div *ngIf="f.insurance.errors.required">Insurance is required. Enter 0 if no insurance is provided</div>
+        <div *ngIf="f.insurance.errors.required">Insurance is required or entered value is invalid. Enter 0 if no
+          insurance is provided
+        </div>
         <div *ngIf="f.insurance.errors.pattern">Please enter a valid number</div>
       </div>
     </div>
@@ -49,7 +53,9 @@
       <input type="number" formControlName="four_o_oneK" class="form-control"
              [ngClass]="{ 'is-invalid': submitted && f.four_o_oneK.errors }"/>
       <div *ngIf="submitted && f.four_o_oneK.errors" class="invalid-feedback">
-        <div *ngIf="f.four_o_oneK.errors.required">401(k) is required. Enter 0 if no 401(k) is provided</div>
+        <div *ngIf="f.four_o_oneK.errors.required">401(k) is required or entered value is invalid. Enter 0 if no 401(k)
+          is provided
+        </div>
         <div *ngIf="f.four_o_oneK.errors.pattern">Please enter a valid number</div>
       </div>
     </div>
