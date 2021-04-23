@@ -14,8 +14,8 @@ const routes: Routes = [
   {path: '', component: EmployeeComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'add', component: InformationComponent},
-  {path: 'update', component: InformationComponent},
+  {path: 'add', component: InformationComponent, canActivate: [AuthGuard]},
+  {path: 'update', component: InformationComponent, canActivate: [AuthGuard]},
 
   // Redirect to home if the path is invalid.
   {path: '**', redirectTo: ''}
